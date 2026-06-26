@@ -1,0 +1,273 @@
+﻿/*!
+
+Split Pane v0.4.0
+
+Copyright (c) 2014 Simon Hagström
+
+Released under the MIT license
+https://raw.github.com/shagstrom/split-pane/master/LICENSE
+
+*/
+.split-pane {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.split-pane.fixed-top > .split-pane-component,
+.split-pane.fixed-bottom > .split-pane-component,
+.split-pane.horizontal-percent > .split-pane-component {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	overflow: auto;
+	top: auto;
+	bottom: 0;
+	z-index: 1;
+}
+
+.split-pane.fixed-top > .split-pane-component:first-child,
+.split-pane.fixed-bottom > .split-pane-component:first-child,
+.split-pane.horizontal-percent > .split-pane-component:first-child {
+	top: 0;
+	bottom: auto;
+}
+
+.split-pane.fixed-top > .split-pane-divider,
+.split-pane.fixed-bottom > .split-pane-divider,
+.split-pane.horizontal-percent > .split-pane-divider {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	cursor: ns-resize;
+	z-index: 2;
+	padding-bottom: 5px; /* this actually enlarges the target area for the user trying to find the splitter, without changing the layout of the page (because the position is absolute)*/
+}
+
+.split-pane.fixed-left > .split-pane-component,
+.split-pane.fixed-right > .split-pane-component,
+.split-pane.vertical-percent > .split-pane-component {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	overflow: auto;
+	left: auto;
+	right: 0;
+	z-index: 1;
+}
+
+.split-pane.fixed-left > .split-pane-component:first-child,
+.split-pane.fixed-right > .split-pane-component:first-child,
+.split-pane.vertical-percent > .split-pane-component:first-child {
+	left: 0;
+	right: auto;
+}
+
+.split-pane.fixed-left > .split-pane-divider,
+.split-pane.fixed-right > .split-pane-divider,
+.split-pane.vertical-percent > .split-pane-divider {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	cursor: ew-resize;
+	z-index: 2;
+}
+
+.split-pane-resize-shim {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+	display: none;
+}
+
+.split-pane.fixed-left > .split-pane-resize-shim,
+.split-pane.fixed-right > .split-pane-resize-shim,
+.split-pane.vertical-percent > .split-pane-resize-shim {
+	cursor: ew-resize;
+}
+
+.split-pane.fixed-top > .split-pane-resize-shim,
+.split-pane.fixed-bottom > .split-pane-resize-shim,
+.split-pane.horizontal-percent > .split-pane-resize-shim {
+	cursor: ns-resize;
+}
+
+.origami-ui {
+  visibility: hidden;
+  font-family: arial;
+}
+.origami-layout-mode .origami-ui {
+  visibility: visible;
+}
+.split-pane > .split-pane-component {
+  overflow: hidden !important;
+}
+.split-pane.vertical-percent > .split-pane-component.position-left {
+  right: 50%;
+  margin-right: 3px;
+}
+.split-pane.vertical-percent > .split-pane-component.position-right {
+  width: 50%;
+}
+.split-pane.horizontal-percent > .split-pane-component.position-top {
+  bottom: 50%;
+  margin-bottom: 3px;
+}
+.split-pane.horizontal-percent > .split-pane-component.position-bottom {
+  height: 50%;
+}
+.split-pane.vertical-percent > .vertical-divider {
+  right: 50%;
+  cursor: col-resize;
+  border-right: 3px dashed transparent;
+}
+.split-pane.vertical-percent > .vertical-divider:hover,
+.origami-layout-mode .split-pane.vertical-percent > .vertical-divider,
+.vertical-divider.dragged {
+  border-right-color: #e48c84 !important;
+}
+.split-pane.horizontal-percent > .horizontal-divider {
+  bottom: 50%;
+  cursor: row-resize;
+  border-bottom: 3px dashed transparent;
+}
+.split-pane.horizontal-percent > .horizontal-divider:hover,
+.origami-layout-mode .split-pane.horizontal-percent > .horizontal-divider,
+.horizontal-divider.dragged {
+  border-bottom-color: #e48c84 !important;
+}
+.origami-toggle {
+  position: absolute;
+  right: 19px;
+  top: 19px;
+  cursor: pointer;
+  line-height: 1em;
+  color: #cccccc;
+  font-family: arial;
+}
+.origami-toggle > :first-of-type {
+  display: inline;
+}
+.origami-layout-mode ~ .origami-toggle {
+  color: black;
+}
+.origami-layout-mode .bloom-editable {
+  color: #e6fafa !important;
+}
+.origami-buttons .button,
+.origami-buttons .button:visited {
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  color: #cccccc;
+  background-color: transparent;
+  line-height: 1em;
+  font-size: 18px;
+}
+.origami-buttons .close {
+  font-weight: bold;
+}
+.origami-buttons .button:hover,
+.origami-buttons .button:focus {
+  color: white;
+  background-color: #e48c84;
+}
+.origami-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 20000;
+  height: 99%;
+  width: 99%;
+}
+.origami-buttons .horizontal-buttons,
+.origami-buttons .vertical-buttons {
+  /*   -background-color: lightgrey;rgba(0,0,0,.1) ;*/
+}
+.origami-buttons .close-button-wrapper {
+  padding: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.origami-buttons .horizontal-buttons {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  min-width: 20px;
+}
+.origami-buttons .horizontal-buttons .button {
+  padding: 10px;
+}
+.origami-buttons .horizontal-buttons .separator {
+  border-bottom: 3px #cccccc dashed;
+  width: 100px;
+}
+.origami-buttons .close-button-wrapper {
+  float: left;
+}
+.origami-buttons .vertical-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+}
+.origami-buttons .vertical-buttons .button {
+  position: relative;
+  top: 60px;
+  padding: 10px;
+}
+.origami-buttons .vertical-buttons > div {
+  float: left;
+}
+.origami-buttons .vertical-buttons .separator {
+  border-right: 3px #cccccc dashed;
+  height: 100px;
+}
+.split-pane-component-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  box-sizing: border-box;
+}
+/*the commented line below would also add it to an empty bloom-content1 for re-entry to layout mode*/
+/*but that would be problematic/confusing in a multilingual context*/
+/*.origami-layout-mode .split-pane-component-inner .bloom-editable.bloom-content1:empty:before,*/
+.origami-layout-mode .split-pane-component-inner .textBox-identifier {
+  /*content: "Text Box";*/
+  color: #cccccc;
+  white-space: nowrap;
+  font-size: 32px;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+  z-index: 50000;
+}
+.container-selector-links {
+  display: none;
+}
+.container-textBox-id {
+  display: none;
+}
+.selector-links {
+  top: 45%;
+  text-align: center;
+  z-index: 50000;
+}
+.selector-links,
+.selector-links a {
+  color: #e48c84;
+}
+.selector-links div {
+  display: inline;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6L0Jsb29tRGVza3RvcC9zcmMvQmxvb21Ccm93c2VyVUkvbGliL3NwbGl0LXBhbmUvc3BsaXQtcGFuZS5jc3MiLCJvcmlnYW1pLmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQzNGQTtFQUNFLGtCQUFBO0VBQ0Esa0JBQUE7O0FBRUYsb0JBQXFCO0VBQ25CLG1CQUFBOztBQUdGLFdBQVk7RUFDViwyQkFBQTs7QUFHRixXQUFXLGlCQUFrQix3QkFBdUI7RUFDbEQsVUFBQTtFQUNBLGlCQUFBOztBQUdGLFdBQVcsaUJBQWtCLHdCQUF1QjtFQUNsRCxVQUFBOztBQUdGLFdBQVcsbUJBQW9CLHdCQUF1QjtFQUNwRCxXQUFBO0VBQ0Esa0JBQUE7O0FBR0YsV0FBVyxtQkFBb0Isd0JBQXVCO0VBQ3BELFdBQUE7O0FBR0YsV0FBVyxpQkFBa0I7RUFDM0IsVUFBQTtFQUNBLGtCQUFBO0VBQ0Esb0NBQUE7O0FBR0YsV0FBVyxpQkFBa0Isb0JBQW1CO0FBQ2hELG9CQUFxQixZQUFXLGlCQUFrQjtBQUNsRCxpQkFBaUI7RUFDZiwyQkFBQTs7QUFHRixXQUFXLG1CQUFvQjtFQUM3QixXQUFBO0VBQ0Esa0JBQUE7RUFDQSxxQ0FBQTs7QUFHRixXQUFXLG1CQUFvQixzQkFBcUI7QUFDcEQsb0JBQXFCLFlBQVcsbUJBQW9CO0FBQ3BELG1CQUFtQjtFQUNqQiw0QkFBQTs7QUFHRjtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLFNBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0Esa0JBQUE7O0FBRUYsZUFBZ0I7RUFDZixlQUFBOztBQUVELG9CQUFxQjtFQUNuQixZQUFBOztBQUVGLG9CQUFxQjtFQUNuQixjQUFBOztBQUVGLGdCQUFpQjtBQUFTLGdCQUFpQixRQUFPO0VBQ2hELHFCQUFBO0VBQ0EscUJBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsY0FBQTtFQUNBLDZCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxlQUFBOztBQUVGLGdCQUFpQjtFQUNmLGlCQUFBOztBQUdGLGdCQUFpQixRQUFPO0FBQVEsZ0JBQWlCLFFBQU87RUFDdEQsWUFBQTtFQUNBLHlCQUFBOztBQUdGO0VBQ0Usa0JBQUE7RUFDQSxNQUFBO0VBQ0EsUUFBQTtFQUNBLGNBQUE7RUFDQSxXQUFBO0VBQ0EsVUFBQTs7QUFJRixnQkFBaUI7QUFDakIsZ0JBQWlCOzs7QUFHakIsZ0JBQWlCO0VBQ2YsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLE1BQUE7O0FBRUYsZ0JBQWlCO0VBQ2Ysa0JBQUE7RUFDQSxRQUFBO0VBQ0EsT0FBQTtFQUNBLGVBQUE7O0FBRUYsZ0JBQWlCLG9CQUFvQjtFQUNuQyxhQUFBOztBQUdGLGdCQUFpQixvQkFBb0I7RUFDbkMsaUNBQUE7RUFDQSxZQUFBOztBQUVGLGdCQUFpQjtFQUNmLFdBQUE7O0FBRUYsZ0JBQWlCO0VBQ2Ysa0JBQUE7RUFDQSxTQUFBO0VBQ0EsU0FBQTs7QUFFRixnQkFBaUIsa0JBQWtCO0VBQ2pDLGtCQUFBO0VBQ0EsU0FBQTtFQUNBLGFBQUE7O0FBRUYsZ0JBQWlCLGtCQUFrQjtFQUNqQyxXQUFBOztBQUVGLGdCQUFpQixrQkFBa0I7RUFDakMsZ0NBQUE7RUFDQSxhQUFBOztBQUdGO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUVBLFlBQUE7RUFDQSxzQkFBQTs7Ozs7QUFNRixvQkFBcUIsNEJBQTRCOztFQUUvQyxjQUFBO0VBQ0EsbUJBQUE7RUFDQSxlQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSxRQUFBO0VBQ0EsY0FBQTs7QUFFRjtFQUNDLGFBQUE7O0FBRUQ7RUFDQyxhQUFBOztBQUVEO0VBQ0UsUUFBQTtFQUNBLGtCQUFBO0VBQ0EsY0FBQTs7QUFFRjtBQUFpQixlQUFnQjtFQUMvQixjQUFBOztBQUVGLGVBQWdCO0VBQ2YsZUFBQSIsImZpbGUiOiJ1bmRlZmluZWQifQ== */
