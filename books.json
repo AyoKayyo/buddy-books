@@ -10,5 +10,41 @@
     "cover": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/ERMHxDymEF/thumbnail.png",
     "source": "https://bloomlibrary.org/book/ERMHxDymEF",
     "url": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/ERMHxDymEF/"
+  },
+  {
+    "id": "NKkNtKTwOF",
+    "title": "What Do These Birds Say?",
+    "pageCount": 8,
+    "level": 2,
+    "license": "cc-by-nc-sa",
+    "attribution": "Copyright © 2025, SIL-PNG Education for Life",
+    "narrated": true,
+    "cover": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/NKkNtKTwOF/thumbnail.png",
+    "source": "https://bloomlibrary.org/book/NKkNtKTwOF",
+    "url": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/NKkNtKTwOF/"
+  },
+  {
+    "id": "Tv5HrMAJt8",
+    "title": "What Do These Animals Say?",
+    "pageCount": 8,
+    "level": 2,
+    "license": "cc-by-nc-sa",
+    "attribution": "Copyright © 2025, SIL-PNG Education for Life",
+    "narrated": true,
+    "cover": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/Tv5HrMAJt8/thumbnail.png",
+    "source": "https://bloomlibrary.org/book/Tv5HrMAJt8",
+    "url": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/Tv5HrMAJt8/"
+  },
+  {
+    "id": "0bosd1NHgH",
+    "title": "The Lion and the Mouse",
+    "pageCount": 11,
+    "level": 3,
+    "license": "cc-by-nc-sa",
+    "attribution": "Copyright © 2021, SIL-PNG Education for Life",
+    "narrated": true,
+    "cover": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/0bosd1NHgH/thumbnail.png",
+    "source": "https://bloomlibrary.org/book/0bosd1NHgH",
+    "url": "https://cdn.jsdelivr.net/gh/AyoKayyo/buddy-books@master/books/0bosd1NHgH/"
   }
 ]
